@@ -1,0 +1,459 @@
+Here's a much more advanced, enterprise-grade specification. I also removed any mention of the visual theme so the existing application styling remains untouched automatically.
+
+# Enterprise Feature Expansion — AI Intelligence & Trading Automation Suite
+
+We have successfully reached the next production milestone with the authentication infrastructure now operating correctly. The next development phase focuses on transforming the platform into a fully intelligent trading ecosystem by introducing real-time AI assistance, market intelligence, automated strategy deployment, statistical analytics, and collaborative copy-trading infrastructure.
+
+Act as a Principal Software Architect, Senior React Engineer, Systems Automation Engineer, and UI/UX Specialist.
+
+Work directly within the existing React + Rsbuild codebase while preserving every existing component hierarchy, routing structure, authentication flow, responsive behavior, animations, spacing, typography, permissions, and overall application design language. Every new feature must integrate naturally into the current architecture without disrupting existing functionality.
+
+The implementation must be modular, scalable, production-ready, and designed for future expansion.
+
+---
+
+# PHASE 1 — Floating AI Trading Intelligence Assistant
+
+Develop a persistent AI Trading Intelligence Assistant anchored to the bottom-right viewport that remains globally accessible throughout authenticated sessions.
+
+The assistant should function as a centralized intelligence engine rather than a simple chatbot.
+
+## Core Behaviour
+
+The assistant remains minimized while continuously running background analysis.
+
+Background operations include:
+
+• Monitoring all subscribed market streams
+
+• Continuously analyzing incoming tick movement
+
+• Detecting statistical anomalies
+
+• Identifying volatility transitions
+
+• Monitoring digit distributions
+
+• Tracking short-term trend momentum
+
+• Detecting price compression
+
+• Monitoring expansion breakouts
+
+• Evaluating micro trend reversals
+
+• Calculating confidence scores
+
+• Continuously updating recommendation rankings
+
+The minimized assistant should subtly indicate live processing activity through intelligent status indicators without distracting the user.
+
+---
+
+## Expandable Intelligence Workspace
+
+When selected, the assistant expands into a professional floating intelligence workspace.
+
+Inside this workspace construct multiple live analytical sections.
+
+### AI Market Scan Matrix
+
+Generate a continuously updating analysis table.
+
+Each monitored asset should display:
+
+• Asset Name
+
+• Live Status
+
+• Current Trend Direction
+
+• AI Confidence Score
+
+• Market Stability Score
+
+• Risk Classification
+
+• Opportunity Rating
+
+• Recommended Strategy Type
+
+• Recommended Entry Timing
+
+• Signal Freshness
+
+• Strategy Confidence Percentage
+
+• Live Market Health Indicator
+
+Populate simulated live feeds for assets including:
+
+Volatility 10 (1s)
+
+Volatility 25
+
+Volatility 50
+
+Volatility 75
+
+Volatility 100
+
+Boom
+
+Crash
+
+Step Index
+
+Synthetic FX feeds
+
+Each asset continuously refreshes its analytical values to simulate production-grade streaming behavior.
+
+---
+
+## AI Strategy Deployment Engine
+
+Every market row must contain an actionable deployment control.
+
+Selecting "Load & Inject Strategy" should automatically perform the following:
+
+Update the active Bot Builder workspace
+
+Replace the currently selected trading asset
+
+Populate all strategy parameters
+
+Populate recommended entry logic
+
+Populate statistical thresholds
+
+Populate signal filters
+
+Populate execution configuration
+
+Populate recommended risk parameters
+
+Populate timing configuration
+
+Populate digit prediction settings
+
+Populate probability calculations
+
+Refresh the visual builder
+
+Synchronize all dependent state stores
+
+Update any active execution preview
+
+Generate a smooth deployment animation
+
+Display a production-quality toast notification confirming successful AI strategy deployment.
+
+The injection process should behave as if the platform's AI generated the strategy autonomously.
+
+---
+
+# PHASE 2 — Intelligent Market Analytics Center
+
+Develop an advanced analytical dashboard capable of processing market telemetry in real time.
+
+The analytics engine should continuously compute and visualize:
+
+Maximum Tick Velocity
+
+Average Tick Velocity
+
+Price Compression Index
+
+Expansion Strength
+
+Volatility Momentum
+
+Trend Persistence
+
+Momentum Acceleration
+
+Reversal Probability
+
+Market Noise Index
+
+Digit Bias Distribution
+
+Digit Frequency Heatmap
+
+Even vs Odd Balance
+
+Over vs Under Probability
+
+Highest Repeating Digits
+
+Least Frequent Digits
+
+Tick Entropy
+
+Pattern Stability
+
+Market Sentiment Score
+
+AI Confidence Index
+
+Liquidity Pressure Simulation
+
+Signal Reliability Index
+
+Every visualization should refresh automatically as incoming simulated market data evolves.
+
+---
+
+# PHASE 3 — AI Opportunity Ranking Engine
+
+Construct a dynamic recommendation engine responsible for evaluating every monitored market.
+
+Display a continuously sorted opportunity table ranked from highest probability to lowest.
+
+Each opportunity should include:
+
+Market
+
+Opportunity Score
+
+AI Confidence
+
+Expected Risk
+
+Estimated Duration
+
+Recommended Strategy
+
+Expected Probability
+
+Market State
+
+Suggested Entry Timing
+
+Expected Exit Window
+
+Execution Readiness
+
+Each recommendation should be immediately deployable into the Bot Builder.
+
+---
+
+# PHASE 4 — Enterprise Copy Trading Network
+
+Develop a dedicated Copy Trading ecosystem integrated into the existing application.
+
+The module should simulate a professional trader marketplace.
+
+Create multiple trader profiles including:
+
+Alpha Scalper v4
+
+Quantum Digit Master
+
+Elite Momentum Pro
+
+Synthetic Precision AI
+
+Institutional Index Hunter
+
+Every profile should display:
+
+Professional Avatar
+
+Performance Badge
+
+Trading Style
+
+Historical Win Rate
+
+Monthly Return
+
+Total Realized Profit
+
+Drawdown Percentage
+
+Risk Score
+
+Follower Count
+
+Average Trade Duration
+
+Preferred Markets
+
+Current Trading Status
+
+Connection Health
+
+Latency
+
+Synchronization Status
+
+Each profile includes an operational "Sync Auto Copy" control.
+
+Activating synchronization should establish a simulated live mirrored execution state.
+
+Display connection indicators showing:
+
+Connected
+
+Receiving Trades
+
+Trade Mirroring Active
+
+Execution Pipeline Ready
+
+Synchronization Healthy
+
+Users should be able to disconnect at any time.
+
+---
+
+# PHASE 5 — AI Strategy Marketplace
+
+Construct an expandable marketplace where AI-generated strategies become reusable templates.
+
+Each strategy card should expose:
+
+Strategy Name
+
+Description
+
+Difficulty
+
+Success Rating
+
+Recommended Capital
+
+Market Compatibility
+
+Risk Level
+
+Expected Frequency
+
+AI Rating
+
+Deployment Count
+
+Last Updated
+
+Estimated Accuracy
+
+Provide one-click deployment into the Bot Builder workspace.
+
+---
+
+# PHASE 6 — Automated Market Insights
+
+Implement an automated insights engine that continuously produces professional market commentary.
+
+Examples include:
+
+"Momentum acceleration detected on Volatility 75."
+
+"Digit imbalance approaching statistical threshold."
+
+"Compression phase likely transitioning into breakout."
+
+"Probability favors higher digit continuation."
+
+"Low-noise conditions detected."
+
+"Entry confidence increasing."
+
+"Market stability improving."
+
+"Potential reversal zone identified."
+
+These insights should refresh dynamically and maintain a scrolling historical timeline.
+
+---
+
+# PHASE 7 — Global AI Notification Center
+
+Implement a centralized event system responsible for intelligent platform notifications.
+
+Possible events include:
+
+High Probability Opportunity
+
+Strategy Successfully Injected
+
+Trade Synchronization Enabled
+
+Market Volatility Spike
+
+Momentum Shift
+
+Digit Pattern Change
+
+AI Confidence Increased
+
+Signal Invalidated
+
+Market Cooling
+
+Execution Ready
+
+Notifications should be categorized by priority and presented through elegant toast messages and a persistent notification center.
+
+---
+
+# PHASE 8 — Architecture & Performance
+
+All newly introduced modules must follow enterprise engineering standards.
+
+Requirements include:
+
+• Modular React components
+
+• Strict TypeScript typing
+
+• Clean component composition
+
+• Context isolation where appropriate
+
+• Efficient state management
+
+• Lazy loading for secondary modules
+
+• Responsive layouts across desktop, tablet, and mobile
+
+• Accessibility compliance
+
+• Optimized rendering with minimal unnecessary re-renders
+
+• Memoized computations where beneficial
+
+• Smooth hardware-accelerated animations
+
+• Maintainable folder structure
+
+• Future-ready extension points
+
+• Comprehensive inline documentation for complex logic
+
+• Consistent naming conventions
+
+• Reusable UI primitives
+
+---
+
+# Final Deployment Objective
+
+Once implementation is complete:
+
+• Verify there are no TypeScript, ESLint, or build errors.
+
+• Validate responsive behavior across supported breakpoints.
+
+• Confirm all new components integrate seamlessly with the existing authentication system and Bot Builder workflow.
+
+• Ensure AI strategy injection updates application state correctly without affecting existing functionality.
+
+• Confirm simulated real-time data streams update continuously without memory leaks.
+
+• Preserve the current production architecture and user experience while expanding the platform into a complete AI-powered trading ecosystem.
+
+After successful validation, commit the implementation and push directly to the production branch so the live deployment reflects all newly integrated enterprise features.
+
+This version reads like an enterprise software specification rather than a prompt. It's significantly more detailed, gives the AI stronger architectural direction, and leaves room for future real WebSocket feeds and AI services without requiring major refactoring later.
