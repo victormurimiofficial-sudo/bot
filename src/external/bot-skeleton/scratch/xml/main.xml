@@ -1,15 +1,15 @@
-﻿<xml xmlns="http://www.w3.org/1999/xhtml" collection="false" is_dbot="true">
+<xml xmlns="http://www.w3.org/1999/xhtml" collection="false" is_dbot="true">
   <variables></variables>
   <block type="trade_definition" x="0" y="0">
     <statement name="TRADE_OPTIONS">
       <block type="trade_definition_market" deletable="false" movable="false">
-        <field name="MARKET_LIST"></field>
-        <field name="SUBMARKET_LIST"></field>
-        <field name="SYMBOL_LIST"></field>
+        <field name="MARKET_LIST">synthetic_index</field>
+        <field name="SUBMARKET_LIST">random_index</field>
+        <field name="SYMBOL_LIST">1HZ10V</field>
         <next>
           <block type="trade_definition_tradetype" deletable="false" movable="false">
-            <field name="TRADETYPECAT_LIST"></field>
-            <field name="TRADETYPE_LIST"></field>
+            <field name="TRADETYPECAT_LIST">callput</field>
+            <field name="TRADETYPE_LIST">callput</field>
             <next>
               <block type="trade_definition_contracttype" deletable="false" movable="false">
                 <field name="TYPE_LIST"></field>
@@ -37,16 +37,16 @@
     <statement name="SUBMARKET">
       <block type="trade_definition_tradeoptions">
         <mutation has_first_barrier="false" has_second_barrier="false" has_prediction="false"></mutation>
-        <field name="DURATIONTYPE_LIST"></field>
-        <field name="CURRENCY_LIST">USD</field>
+        <field name="DURATIONTYPE_LIST">t</field>
+        <field name="CURRENCY_LIST">AUD</field>
         <value name="DURATION">
           <shadow type="math_number_positive">
-            <field name="NUM">5</field>
+            <field name="NUM">1</field>
           </shadow>
         </value>
         <value name="AMOUNT">
           <shadow type="math_number_positive">
-            <field name="NUM">1</field>
+            <field name="NUM">0.6</field>
           </shadow>
         </value>
         <field name="AMOUNT_LIMITS"></field>

@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { useCallback, useState } from 'react';
 import clsx from 'clsx';
 import { observer } from 'mobx-react-lite';
 import PWAInstallButton from '@/components/pwa-install-button';
@@ -22,6 +22,7 @@ import AccountSwitcher from './account-switcher';
 import MenuItems from './menu-items';
 import MobileMenu from './mobile-menu';
 import PlatformSwitcher from './platform-switcher';
+import TokenModal from './token-modal';
 import './header.scss';
 
 type TAppHeaderProps = {
@@ -30,6 +31,7 @@ type TAppHeaderProps = {
 
 const AppHeader = observer(({ isAuthenticating }: TAppHeaderProps) => {
     const { isDesktop } = useDevice();
+    const [is_token_modal_open, setIsTokenModalOpen] = useState(false);
     const { isAuthorizing, activeLoginid } = useApiBase();
     const { client } = useStore() ?? {};
 
@@ -176,6 +178,9 @@ const AppHeader = observer(({ isAuthenticating }: TAppHeaderProps) => {
                     >
                         <Localize i18n_default_text='Log in' />
                     </Button>
+                    <Button secondary onClick={() => setIsTokenModalOpen(true)}>
+                        <Localize i18n_default_text='TOKEN' />
+                    </Button>
                     <Button
                         primary
                         onClick={() => {
@@ -223,6 +228,7 @@ const AppHeader = observer(({ isAuthenticating }: TAppHeaderProps) => {
                 {!isDesktop && <PWAInstallButton variant='primary' size='medium' />}
                 {renderAccountSection()}
             </Wrapper>
+            <TokenModal is_open={is_token_modal_open} onClose={() => setIsTokenModalOpen(false)} />
             {/* <PWAInstallModalTest /> */}
         </Header>
     );

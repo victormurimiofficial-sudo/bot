@@ -1,15 +1,18 @@
 import { LocalStorageConstants, LocalStorageUtils, URLUtils } from '@deriv-com/utils';
 import { isStaging } from '../url/helpers';
 
+// Global default application ID used for all Deriv WebSocket connections.
+export const DEFAULT_APP_ID = 129344;
+
 export const APP_IDS = {
-    LOCALHOST: 36300,
-    TMP_STAGING: 64584,
-    STAGING: 29934,
-    STAGING_BE: 29934,
-    STAGING_ME: 29934,
-    PRODUCTION: 65555,
-    PRODUCTION_BE: 65556,
-    PRODUCTION_ME: 65557,
+    LOCALHOST: DEFAULT_APP_ID,
+    TMP_STAGING: DEFAULT_APP_ID,
+    STAGING: DEFAULT_APP_ID,
+    STAGING_BE: DEFAULT_APP_ID,
+    STAGING_ME: DEFAULT_APP_ID,
+    PRODUCTION: DEFAULT_APP_ID,
+    PRODUCTION_BE: DEFAULT_APP_ID,
+    PRODUCTION_ME: DEFAULT_APP_ID,
 };
 
 export const livechat_license_id = 12049137;

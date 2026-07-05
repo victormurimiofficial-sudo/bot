@@ -1,0 +1,101 @@
+.token-modal {
+    background: var(--general-main-1, #fff);
+    border-radius: 8px;
+    box-shadow: 0 8px 24px 0 var(--shadow-menu, rgb(0 0 0 / 16%));
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+
+    &__overlay {
+        position: fixed;
+        inset: 0;
+        background: rgb(0 0 0 / 45%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+        padding: 1.6rem;
+    }
+
+    &__header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1.6rem 2rem;
+        border-bottom: 1px solid var(--general-section-1, #f2f3f4);
+    }
+
+    &__title {
+        font-size: 1.8rem;
+        font-weight: 700;
+        margin: 0;
+        color: var(--text-prominent, #333);
+    }
+
+    &__close {
+        background: none;
+        border: none;
+        font-size: 2.4rem;
+        line-height: 1;
+        cursor: pointer;
+        color: var(--text-less-prominent, #999);
+        padding: 0;
+
+        &:hover {
+            color: var(--text-prominent, #333);
+        }
+    }
+
+    &__body {
+        padding: 2rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1.2rem;
+    }
+
+    &__description {
+        font-size: 1.4rem;
+        line-height: 1.5;
+        color: var(--text-general, #555);
+        margin: 0;
+    }
+
+    &__input {
+        width: 100%;
+        padding: 1.2rem 1.4rem;
+        font-size: 1.4rem;
+        border: 1px solid var(--border-normal, #d6dadb);
+        border-radius: 4px;
+        background: var(--general-main-2, #fff);
+        color: var(--text-prominent, #333);
+        outline: none;
+        box-sizing: border-box;
+
+        &:focus {
+            border-color: var(--brand-red-coral, #ff444f);
+        }
+    }
+
+    &__message {
+        font-size: 1.3rem;
+        margin: 0;
+
+        &--error {
+            color: var(--status-danger, #ec3f3f);
+        }
+
+        &--success {
+            color: var(--status-success, #4bb4b3);
+        }
+    }
+
+    &__footer {
+        display: flex;
+        justify-content: flex-end;
+        gap: 1rem;
+        padding: 1.6rem 2rem;
+        border-top: 1px solid var(--general-section-1, #f2f3f4);
+    }
+}
