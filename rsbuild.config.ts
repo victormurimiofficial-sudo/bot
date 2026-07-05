@@ -3,6 +3,8 @@ import { pluginReact } from '@rsbuild/plugin-react';
 import { pluginSass } from '@rsbuild/plugin-sass';
 import { pluginBasicSsl } from '@rsbuild/plugin-basic-ssl';
 
+const isDev = process.env.NODE_ENV !== 'production';
+
 const path = require('path');
 
 export default defineConfig({
@@ -18,7 +20,8 @@ export default defineConfig({
             exclude: /node_modules/,
         }),
         pluginReact(),
-        pluginBasicSsl(),
+        // Only enable SSL when not running in Replit (Replit proxy handles HTTPS)
+        ...(isDev && !process.env.REPL_ID ? [pluginBasicSsl()] : []),
     ],
     source: {
         entry: {
@@ -85,7 +88,8 @@ export default defineConfig({
         template: './index.html',
     },
     server: {
-        port: 8443,
+        // Use port 5000 on Replit (proxy handles HTTPS); 8443 elsewhere
+        port: process.env.REPL_ID ? 5000 : 8443,
         compress: true,
         headers: {
             'Cross-Origin-Opener-Policy': 'unsafe-none',
