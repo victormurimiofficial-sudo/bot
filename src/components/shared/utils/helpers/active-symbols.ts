@@ -82,6 +82,8 @@ const getFavoriteOpenSymbol = async (active_symbols: ActiveSymbols) => {
 
 const getDefaultOpenSymbol = async (active_symbols: ActiveSymbols) => {
     const default_open_symbol =
+        // Volatility 10 (1s) Index
+        (await findSymbol(active_symbols, '1HZ10V')) ||
         (await findSymbol(active_symbols, '1HZ100V')) ||
         (await findFirstSymbol(active_symbols, /random_index/)) ||
         (await findFirstSymbol(active_symbols, /major_pairs/));
