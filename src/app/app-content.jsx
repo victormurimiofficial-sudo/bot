@@ -84,6 +84,23 @@ const AppContent = observer(() => {
         }
     }, [common, connectionStatus, offline_timeout]);
 
+    // Hard fallback: if the WebSocket never reaches OPENED within 7 s
+    // (e.g. bad App ID, network hiccup, proxy issue), force the inner gate
+    // so changeActiveSymbolLoadingState fires and its own 12 s timeout clears
+    // the spinner. Without this the user sees a permanent spinner.
+    React.useEffect(() => {
+        const timer = setTimeout(() => {
+            setIsApiInitialized(prev => {
+                if (!prev) {
+                    console.warn('[AppContent] WebSocket did not open in 7 s — forcing init gate.');
+                }
+                return true;
+            });
+        }, 7000);
+        return () => clearTimeout(timer);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
     // Handle offline scenarios - don't wait indefinitely for API
     useEffect(() => {
         if (!isOnline && is_loading) {

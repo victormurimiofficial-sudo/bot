@@ -3,11 +3,15 @@ import { observer } from 'mobx-react-lite';
 import { toast } from 'react-toastify';
 import { aiTradingStore } from '../../store/ai-trading-store';
 import { TMarketAsset } from '../../store/types';
+import CopyTrading from '../copy-trading';
 import MarketAnalytics from '../market-analytics';
 import MarketInsights from '../market-insights';
 import NotificationCenter from '../notification-center';
 import OpportunityEngine from '../opportunity-engine';
-import CopyTrading from '../copy-trading';
+import PerformanceDashboard from '../performance-dashboard';
+import RiskManager from '../risk-manager';
+import SentimentFeed from '../sentiment-feed';
+import SignalScanner from '../signal-scanner';
 import StrategyMarketplace from '../strategy-marketplace';
 
 // ─── Risk Badge ──────────────────────────────────────────────
@@ -24,16 +28,15 @@ const TrendIcon: React.FC<{ trend: string }> = ({ trend }) => {
 
 // ─── Freshness Dot ───────────────────────────────────────────
 const FreshnessDot: React.FC<{ freshness: string }> = ({ freshness }) => (
-    <span className={`ats-freshness ats-freshness--${freshness.toLowerCase()}`} title={freshness}>●</span>
+    <span className={`ats-freshness ats-freshness--${freshness.toLowerCase()}`} title={freshness}>
+        ●
+    </span>
 );
 
 // ─── Confidence Bar ──────────────────────────────────────────
 const ConfidenceBar: React.FC<{ value: number; color?: string }> = ({ value, color }) => (
     <div className='ats-conf-bar'>
-        <div
-            className='ats-conf-bar__fill'
-            style={{ width: `${value}%`, background: color ?? 'var(--ats-accent)' }}
-        />
+        <div className='ats-conf-bar__fill' style={{ width: `${value}%`, background: color ?? 'var(--ats-accent)' }} />
         <span className='ats-conf-bar__label'>{value}%</span>
     </div>
 );
@@ -120,13 +123,17 @@ const ScannerTab: React.FC = observer(() => {
 
 // ─── Tab Config ──────────────────────────────────────────────
 const TABS = [
-    { id: 'scanner',      label: '🔬 Scanner',    Component: ScannerTab },
-    { id: 'analytics',   label: '📊 Analytics',   Component: MarketAnalytics },
+    { id: 'scanner', label: '🔬 Scanner', Component: ScannerTab },
+    { id: 'signals', label: '📡 Signals', Component: SignalScanner },
+    { id: 'analytics', label: '📊 Analytics', Component: MarketAnalytics },
     { id: 'opportunity', label: '🎯 Opportunities', Component: OpportunityEngine },
-    { id: 'copy',        label: '🔗 Copy Trading', Component: CopyTrading },
-    { id: 'strategies',  label: '🧠 Strategies',  Component: StrategyMarketplace },
-    { id: 'insights',    label: '💡 Insights',     Component: MarketInsights },
-    { id: 'alerts',      label: '🔔 Alerts',       Component: NotificationCenter },
+    { id: 'risk', label: '🛡️ Risk', Component: RiskManager },
+    { id: 'performance', label: '📈 Performance', Component: PerformanceDashboard },
+    { id: 'sentiment', label: '🧭 Sentiment', Component: SentimentFeed },
+    { id: 'copy', label: '🔗 Copy Trade', Component: CopyTrading },
+    { id: 'strategies', label: '🧠 Strategies', Component: StrategyMarketplace },
+    { id: 'insights', label: '💡 Insights', Component: MarketInsights },
+    { id: 'alerts', label: '🔔 Alerts', Component: NotificationCenter },
 ];
 
 // ─── Floating Assistant ──────────────────────────────────────

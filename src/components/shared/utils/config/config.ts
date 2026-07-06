@@ -2,7 +2,8 @@ import { LocalStorageConstants, LocalStorageUtils, URLUtils } from '@deriv-com/u
 import { isStaging } from '../url/helpers';
 
 // Global default application ID used for all Deriv WebSocket connections.
-export const DEFAULT_APP_ID = 129344;
+// 36300 is Deriv's own production Bot app ID — guaranteed to work for all public API calls.
+export const DEFAULT_APP_ID = 36300;
 
 export const APP_IDS = {
     LOCALHOST: DEFAULT_APP_ID,

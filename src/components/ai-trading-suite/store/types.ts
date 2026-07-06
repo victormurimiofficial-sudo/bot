@@ -28,15 +28,15 @@ export interface TMarketAsset {
     symbol: string;
     status: string;
     trend: TrendDirection;
-    confidence: number;       // 0-100
-    stability: number;        // 0-100
+    confidence: number; // 0-100
+    stability: number; // 0-100
     risk: RiskLevel;
     opportunityRating: number; // 0-10
     strategy: string;
     entryTiming: string;
     signalFreshness: SignalFreshness;
     strategyConfidence: number; // 0-100
-    marketHealth: number;       // 0-100
+    marketHealth: number; // 0-100
     lastUpdated: number;
 }
 
@@ -52,8 +52,8 @@ export interface TMarketAnalytics {
     momentumAcceleration: number;
     reversalProbability: number;
     noiseIndex: number;
-    digitBias: number[];        // 0-9 frequency
-    evenOddBalance: number;     // 0-100 (50 = balanced)
+    digitBias: number[]; // 0-9 frequency
+    evenOddBalance: number; // 0-100 (50 = balanced)
     overUnderProbability: number; // 0-100
     tickEntropy: number;
     patternStability: number;
@@ -68,8 +68,8 @@ export interface TOpportunity {
     id: string;
     market: string;
     symbol: string;
-    score: number;             // 0-100
-    aiConfidence: number;      // 0-100
+    score: number; // 0-100
+    aiConfidence: number; // 0-100
     expectedRisk: RiskLevel;
     estimatedDuration: string;
     recommendedStrategy: string;
@@ -86,18 +86,18 @@ export interface TCopyTrader {
     id: string;
     name: string;
     style: string;
-    winRate: number;           // 0-100
-    monthlyReturn: number;     // percentage
-    totalProfit: number;       // USD
-    drawdown: number;          // percentage
+    winRate: number; // 0-100
+    monthlyReturn: number; // percentage
+    totalProfit: number; // USD
+    drawdown: number; // percentage
     riskScore: RiskLevel;
     followers: number;
     avgTradeDuration: string;
     preferredMarkets: string[];
     currentStatus: string;
     isConnected: boolean;
-    connectionHealth: number;  // 0-100
-    latency: number;           // ms
+    connectionHealth: number; // 0-100
+    latency: number; // ms
     syncStatus: CopyStatus;
     badge: string;
     avatarInitials: string;
@@ -110,12 +110,12 @@ export interface TAiStrategy {
     name: string;
     description: string;
     difficulty: 'BEGINNER' | 'INTERMEDIATE' | 'ADVANCED' | 'EXPERT';
-    successRate: number;       // 0-100
+    successRate: number; // 0-100
     recommendedCapital: number;
     marketCompatibility: string[];
     riskLevel: RiskLevel;
     expectedFrequency: string;
-    aiRating: number;          // 0-10
+    aiRating: number; // 0-10
     deploymentCount: number;
     lastUpdated: string;
     estimatedAccuracy: number; // 0-100
@@ -139,4 +139,67 @@ export interface TAiNotification {
     priority: NotificationPriority;
     timestamp: number;
     read: boolean;
+}
+
+// ─── Risk Manager ────────────────────────────────────────────
+export interface TRiskProfile {
+    riskPerTrade: number; // % of balance
+    maxDailyLoss: number; // % of balance
+    currentExposure: number; // % of balance currently deployed
+    dailyLossUsed: number; // % of daily limit consumed
+    balanceEstimate: number; // USD
+    recommendedStake: number; // USD per trade
+    maxPositions: number;
+    currentPositions: number;
+    riskRewardRatio: number;
+    stopLossLevel: number; // %
+    takeProfitLevel: number; // %
+}
+
+// ─── Signal Scanner ──────────────────────────────────────────
+export interface TSignal {
+    id: string;
+    market: string;
+    symbol: string;
+    type: 'BUY' | 'SELL' | 'NEUTRAL';
+    strength: number; // 0-100
+    confidence: number; // 0-100
+    strategy: string;
+    timeframe: string;
+    expiresIn: number; // seconds remaining
+    triggered: boolean;
+}
+
+// ─── Performance Dashboard ───────────────────────────────────
+export interface TPerformanceStat {
+    totalTrades: number;
+    winRate: number;
+    lossRate: number;
+    totalPnL: number;
+    todayPnL: number;
+    weekPnL: number;
+    sharpeRatio: number;
+    maxDrawdown: number;
+    profitFactor: number;
+    avgWin: number;
+    avgLoss: number;
+    consecutiveWins: number;
+    consecutiveLosses: number;
+    bestTrade: number;
+    worstTrade: number;
+    equityCurve: number[]; // last 24 equity points
+}
+
+// ─── Sentiment Feed ──────────────────────────────────────────
+export type SentimentLabel = 'EXTREME_FEAR' | 'FEAR' | 'NEUTRAL' | 'GREED' | 'EXTREME_GREED';
+
+export interface TSentimentItem {
+    id: string;
+    market: string;
+    score: number; // -100 to +100
+    label: SentimentLabel;
+    headline: string;
+    source: string;
+    timestamp: number;
+    tags: string[];
 }
