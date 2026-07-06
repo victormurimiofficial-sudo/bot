@@ -24,12 +24,12 @@ import initHotjar from '@/utils/hotjar';
 import { setSmartChartsPublicPath } from '@deriv/deriv-charts';
 import { ThemeProvider } from '@deriv-com/quill-ui';
 import { localize } from '@deriv-com/translations';
+import AiTradingSuite from '../components/ai-trading-suite';
 import Audio from '../components/audio';
 import BlocklyLoading from '../components/blockly-loading';
 import BotStopped from '../components/bot-stopped';
 import BotBuilder from '../pages/bot-builder';
 import Main from '../pages/main';
-import AiTradingSuite from '../components/ai-trading-suite';
 import './app.scss';
 import 'react-toastify/dist/ReactToastify.css';
 import '../components/bot-notification/bot-notification.scss';
@@ -195,6 +195,18 @@ const AppContent = observer(() => {
     const changeActiveSymbolLoadingState = () => {
         init();
 
+        // Hard time-budget for any active-symbols fetch.
+        // Using Promise.race so the spinner *always* clears — even if the
+        // underlying promise hangs silently (broken socket, invalid App ID, etc.).
+        const SYMBOLS_TIMEOUT_MS = 12_000;
+        const withTimeout = promise =>
+            Promise.race([
+                promise,
+                new Promise((_, reject) =>
+                    setTimeout(() => reject(new Error('Active symbols fetch timed out')), SYMBOLS_TIMEOUT_MS)
+                ),
+            ]);
+
         const retrieveActiveSymbols = () => {
             const { active_symbols } = ApiHelpers.instance;
 
@@ -205,14 +217,12 @@ const AppContent = observer(() => {
                 return;
             }
 
-            active_symbols
-                .retrieveActiveSymbols(true)
+            withTimeout(active_symbols.retrieveActiveSymbols(true))
                 .then(() => {
                     setIsLoading(false);
                 })
                 .catch(error => {
                     console.error('[API] Failed to retrieve active symbols:', error);
-                    // Don't stay in loading state if API fails
                     setIsLoading(false);
                 });
         };
@@ -234,14 +244,13 @@ const AppContent = observer(() => {
                 }
             }, 1000);
 
-            // Set a maximum timeout to prevent infinite loading
+            // Outer guard: if ApiHelpers.instance never becomes available,
+            // clear the interval and unblock the spinner after the same budget.
             setTimeout(() => {
                 clearInterval(intervalId);
-                if (is_loading) {
-                    console.log('[Timeout] Active symbols loading timeout, showing dashboard');
-                    setIsLoading(false);
-                }
-            }, 10000); // 10 second timeout
+                console.log('[Timeout] ApiHelpers instance not ready — unblocking spinner');
+                setIsLoading(false);
+            }, SYMBOLS_TIMEOUT_MS);
         }
     };
 

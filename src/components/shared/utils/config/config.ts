@@ -26,6 +26,9 @@ export const domain_app_ids = {
     'dbot.deriv.com': APP_IDS.PRODUCTION,
     'dbot.deriv.be': APP_IDS.PRODUCTION_BE,
     'dbot.deriv.me': APP_IDS.PRODUCTION_ME,
+    // Custom deployment domains — always use the production App ID directly
+    // so a stale localStorage 'config.app_id' can never override this.
+    'bot-cupu.vercel.app': APP_IDS.PRODUCTION,
 };
 
 export const getCurrentProductionDomain = () =>
@@ -86,14 +89,21 @@ export const getAppId = () => {
     const config_app_id = window.localStorage.getItem('config.app_id');
     const current_domain = getCurrentProductionDomain() ?? '';
 
-    if (config_app_id) {
+    // Explicit domain entries in domain_app_ids always take priority over
+    // a localStorage override.  This prevents a stale or manually-entered
+    // App ID (via the /endpoint page) from permanently breaking a known
+    // deployment domain such as bot-cupu.vercel.app.
+    const domain_specific_id = domain_app_ids[current_domain as keyof typeof domain_app_ids];
+    if (domain_specific_id) {
+        app_id = domain_specific_id;
+    } else if (config_app_id) {
         app_id = config_app_id;
     } else if (isStaging()) {
         app_id = APP_IDS.STAGING;
     } else if (isTestLink()) {
         app_id = APP_IDS.LOCALHOST;
     } else {
-        app_id = domain_app_ids[current_domain as keyof typeof domain_app_ids] ?? APP_IDS.PRODUCTION;
+        app_id = APP_IDS.PRODUCTION;
     }
 
     return app_id;

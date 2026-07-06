@@ -28,7 +28,15 @@ export default class ActiveSymbols {
         if (api_base.has_active_symbols) {
             this.active_symbols = api_base?.active_symbols ?? [];
         } else {
-            await api_base.active_symbols_promise;
+            // Guard: active_symbols_promise may be null (logged-in flow sets it later)
+            // or may reject (invalid App ID). Either way, never block indefinitely.
+            if (api_base.active_symbols_promise) {
+                try {
+                    await api_base.active_symbols_promise;
+                } catch (e) {
+                    console.error('[ActiveSymbols] active_symbols_promise rejected, continuing:', e);
+                }
+            }
             this.active_symbols = api_base?.active_symbols ?? [];
         }
 

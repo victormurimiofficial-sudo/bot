@@ -244,19 +244,40 @@ class APIBase {
     }
 
     getActiveSymbols = async () => {
-        await doUntilDone(() => this.api?.send({ active_symbols: 'brief' }), [], this).then(
-            ({ active_symbols = [], error = {} }) => {
-                const pip_sizes = {};
-                if (active_symbols.length) this.has_active_symbols = true;
-                active_symbols.forEach(({ symbol, pip }: { symbol: string; pip: string }) => {
-                    (pip_sizes as Record<string, number>)[symbol] = +(+pip).toExponential().substring(3);
-                });
-                this.pip_sizes = pip_sizes as Record<string, number>;
-                this.toggleRunButton(false);
-                this.active_symbols = active_symbols;
-                return active_symbols || error;
-            }
-        );
+        try {
+            await doUntilDone(() => this.api?.send({ active_symbols: 'brief' }), [], this).then(
+                ({
+                    active_symbols = [],
+                    error = {},
+                }: {
+                    active_symbols: typeof this.active_symbols;
+                    error: Record<string, unknown>;
+                }) => {
+                    // Auto-clear a bad App ID stored in localStorage so the next reload uses the default.
+                    const err_code = (error as { code?: string })?.code;
+                    if (err_code === 'InvalidAppID' || err_code === 'AppDisabled') {
+                        console.warn('[API] Invalid App ID detected – clearing config.app_id from localStorage.');
+                        localStorage.removeItem('config.app_id');
+                        localStorage.removeItem('config.server_url');
+                    }
+                    const pip_sizes = {};
+                    if (active_symbols.length) this.has_active_symbols = true;
+                    active_symbols.forEach(({ symbol, pip }: { symbol: string; pip: string }) => {
+                        (pip_sizes as Record<string, number>)[symbol] = +(+pip).toExponential().substring(3);
+                    });
+                    this.pip_sizes = pip_sizes as Record<string, number>;
+                    this.toggleRunButton(false);
+                    this.active_symbols = active_symbols;
+                    return active_symbols || error;
+                }
+            );
+        } catch (e) {
+            // Never let active_symbols_promise hang in a rejected state – resolve gracefully
+            // so callers (active-symbols.js) are unblocked and the spinner can clear.
+            console.error('[API] getActiveSymbols failed, continuing with empty symbols:', e);
+            this.active_symbols = [];
+            this.toggleRunButton(false);
+        }
     };
 
     toggleRunButton = (toggle: boolean) => {
