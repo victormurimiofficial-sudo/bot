@@ -1,0 +1,554 @@
+Got you. You're not asking for "features"—you want **v0 to recreate the actual pages**, component-by-component, so your developers can later wire them to your backend. The screenshots are your blueprint.
+
+The only thing I'll point out is that I can't verify or claim the statistics shown in the screenshots are "accurate." Instead, the prompt should instruct the AI to build the **exact layouts and components**, while binding every metric to your existing live market data services and calculation engine so the values come from your backend rather than being hardcoded.
+
+Here's the first page exactly how I'd prompt v0.
+
+---
+
+# MASTER PROMPT — PAGE 1: MARKET ANALYSIS CENTER
+
+Act as a Senior React Engineer, Trading Dashboard Architect, and UI Systems Designer.
+
+Create a brand-new production page called **Analysis Center**.
+
+Do not redesign the application. Reuse the existing navigation, spacing, typography, responsive layout, authentication, routing, animations, cards, buttons, colors, and design system already used throughout the platform.
+
+The objective is to recreate a professional statistical analysis dashboard similar to institutional trading terminals.
+
+---
+
+## Top Navigation
+
+Create a horizontal navigation identical to the existing modules.
+
+Tabs:
+
+* Circles
+* Scanner
+
+Circles should be active by default.
+
+---
+
+## Market Selection Row
+
+Create the first control row containing:
+
+Left Dropdown
+
+Market Selector
+
+Examples:
+
+Volatility 10 (1s)
+
+Volatility 25
+
+Volatility 50
+
+Volatility 75
+
+Volatility 100
+
+Boom
+
+Crash
+
+Step Index
+
+Right Input
+
+Ticks
+
+Default:
+
+1000
+
+Far right:
+
+Live Price
+
+Update continuously from the existing market stream.
+
+---
+
+## Digit Circle Matrix
+
+Build ten large circular statistical indicators.
+
+Display:
+
+Digit 0
+
+Digit 1
+
+Digit 2
+
+Digit 3
+
+Digit 4
+
+Digit 5
+
+Digit 6
+
+Digit 7
+
+Digit 8
+
+Digit 9
+
+Each circle contains:
+
+Digit Number
+
+Live Percentage
+
+Outer animated progress ring
+
+Current probability
+
+AI confidence glow when probability exceeds threshold
+
+Update continuously using incoming market ticks.
+
+---
+
+## Statistical Panel 1
+
+Title:
+
+OVER / UNDER
+
+Display:
+
+Digits 0–9
+
+Horizontal probability bars
+
+Live percentage
+
+Current dominant side
+
+Current streak
+
+Recent outcomes
+
+Small history boxes showing:
+
+O
+
+U
+
+O
+
+O
+
+U
+
+U
+
+O
+
+etc.
+
+Display current AI recommendation.
+
+---
+
+## Statistical Panel 2
+
+Title:
+
+MATCH / DIFFER
+
+Display:
+
+Digits
+
+Probability bars
+
+Current Match %
+
+Current Differ %
+
+Current streak
+
+History boxes
+
+AI recommendation
+
+Confidence
+
+---
+
+## Statistical Panel 3
+
+Title:
+
+EVEN / ODD
+
+Display:
+
+Even %
+
+Odd %
+
+Animated bars
+
+Historical streak
+
+Current recommendation
+
+Last results
+
+AI confidence
+
+---
+
+## AI Recommendation Panel
+
+Generate a live recommendation box.
+
+Display:
+
+Recommended Trade
+
+Confidence
+
+Reason
+
+Market Condition
+
+Suggested Entry
+
+Suggested Exit
+
+Expected Duration
+
+Risk Rating
+
+Large button:
+
+Load Into Bot
+
+When selected, automatically configure the Bot Builder using the recommended settings.
+
+---
+
+## Bottom Execution Bar
+
+Pinned bottom panel displaying:
+
+Run
+
+Execution Speed
+
+Current Market
+
+Current Tick
+
+Current Signal
+
+Connection Status
+
+AI Status
+
+Bot Status
+
+---
+
+## Functional Requirements
+
+Every widget must subscribe to the existing live market data service.
+
+All calculations must come from the application's analytics engine.
+
+Do not hardcode statistics.
+
+All percentages, streaks, confidence values, and recommendations must update automatically whenever new market data arrives.
+
+---
+
+# PAGE 2 — SCANNER
+
+Create the Scanner tab as a completely separate page.
+
+---
+
+## Scanner Table
+
+Display every available market.
+
+Columns:
+
+Market
+
+Live Price
+
+Trend
+
+Momentum
+
+Volatility
+
+Signal Strength
+
+AI Confidence
+
+Risk
+
+Probability
+
+Recommendation
+
+Action
+
+Rows update continuously.
+
+---
+
+## Filters
+
+Top filters:
+
+Minimum Confidence
+
+Risk Level
+
+Trade Type
+
+Market
+
+Digit
+
+Time Window
+
+Apply filters instantly.
+
+---
+
+## AI Ranking
+
+Rank all opportunities from highest probability to lowest.
+
+Each row contains:
+
+View Analysis
+
+Preview
+
+Load Strategy
+
+Open Bot
+
+---
+
+## Side Panel
+
+Display:
+
+Highest Confidence Trade
+
+Safest Trade
+
+Highest Volatility
+
+Strongest Momentum
+
+Fastest Recovery Opportunity
+
+---
+
+## Bottom Live Feed
+
+Continuously display:
+
+Incoming signals
+
+Detected patterns
+
+Probability changes
+
+Momentum changes
+
+AI alerts
+
+---
+
+# PAGE 3 — HEDGING CENTER
+
+Create an entirely separate module named **Hedging**.
+
+---
+
+## Top Controls
+
+Left
+
+Primary Market
+
+Right
+
+Secondary Market
+
+Middle
+
+Trade Type
+
+Stake
+
+Ticks
+
+Risk %
+
+---
+
+## Live Correlation Cards
+
+Display:
+
+Correlation
+
+Market Strength
+
+Volatility Difference
+
+Trend Direction
+
+Risk Score
+
+Hedge Confidence
+
+---
+
+## Hedge Configuration
+
+Controls:
+
+Stake A
+
+Stake B
+
+Multiplier
+
+Recovery
+
+Martingale
+
+Stop Loss
+
+Take Profit
+
+Maximum Exposure
+
+Hedge Ratio
+
+---
+
+## Live Hedge Monitor
+
+Display:
+
+Trade A
+
+Trade B
+
+Current P/L
+
+Combined P/L
+
+Exposure
+
+Protection %
+
+Recovery %
+
+Risk Meter
+
+---
+
+## AI Hedge Suggestions
+
+Large recommendation card.
+
+Display:
+
+Recommended Hedge Type
+
+Reason
+
+Expected Recovery
+
+Expected Risk
+
+Confidence
+
+Buttons:
+
+Apply Hedge
+
+Modify Hedge
+
+---
+
+## Hedge Strategy Cards
+
+Create cards for:
+
+Classic Hedge
+
+Mirror Hedge
+
+Recovery Hedge
+
+Cross Hedge
+
+Adaptive Hedge
+
+AI Smart Hedge
+
+Each card displays:
+
+Description
+
+Risk
+
+Capital Required
+
+Recommended Markets
+
+Estimated Recovery
+
+Success Rating
+
+Button:
+
+Deploy
+
+---
+
+## Bottom Live Monitor
+
+Pinned footer displaying:
+
+Open Hedge
+
+Protected Capital
+
+Exposure
+
+Connection
+
+AI Engine
+
+Execution Status
+
+---
+
+## Functional Requirements
+
+Every value displayed must be bound to the application's existing live trading services, analytics engine, and state management. No values should be hardcoded. The layouts must be fully responsive, modular, and integrate seamlessly with the existing navigation, allowing users to move between Analysis, Scanner, Hedging, Bot Builder, AI Software, and Copy Trader without page reloads.
+
+These prompts are written specifically for v0 to generate the **actual production pages** matching the structure in your reference screenshots, while leaving the live calculations to your existing backend and analytics pipeline.

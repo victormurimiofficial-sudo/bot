@@ -29,10 +29,16 @@ import { Localize, localize } from '@deriv-com/translations';
 import { useDevice } from '@deriv-com/ui';
 import RunPanel from '../../components/run-panel';
 import AiTradingPage from '../ai-trading';
+import AnalysisTool from '../analysis-tool';
+import AutoTrader from '../auto-trader';
+import BulkTrader from '../bulk-trader';
 import ChartModal from '../chart/chart-modal';
 import Dashboard from '../dashboard';
 import RunStrategy from '../dashboard/run-strategy';
 import DTrader from '../dtrader';
+import HedgingCenter from '../hedging';
+import ManualTrader from '../manual-trader';
+import SpeedBot from '../speedbot';
 import './main.scss';
 
 const ChartWrapper = lazy(() => import('../chart/chart-wrapper'));
@@ -68,7 +74,20 @@ const AppWrapper = observer(() => {
     const { clear } = summary_card;
     const { DASHBOARD, BOT_BUILDER } = DBOT_TABS;
     const init_render = React.useRef(true);
-    const hash = ['dashboard', 'bot_builder', 'dtrader', 'chart', 'tutorial', 'ai_trading'];
+    const hash = [
+        'dashboard',
+        'bot_builder',
+        'dtrader',
+        'speedbot',
+        'analysis_tool',
+        'auto_trader',
+        'manual_trader',
+        'bulk_trader',
+        'hedging',
+        'chart',
+        'tutorial',
+        'ai_trading',
+    ];
     const { isDesktop } = useDevice();
     const location = useLocation();
     const navigate = useNavigate();
@@ -318,6 +337,72 @@ const AppWrapper = observer(() => {
                             </div>
                             <div
                                 label={
+                                    <span style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
+                                        <span style={{ fontSize: '16px', lineHeight: 1 }}>⚡</span>
+                                        <Localize i18n_default_text='Speedbot' />
+                                    </span>
+                                }
+                                id='id-speedbot'
+                            >
+                                <SpeedBot />
+                            </div>
+                            <div
+                                label={
+                                    <span style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
+                                        <span style={{ fontSize: '16px', lineHeight: 1 }}>🔬</span>
+                                        <Localize i18n_default_text='Analysis' />
+                                    </span>
+                                }
+                                id='id-analysis-tool'
+                            >
+                                <AnalysisTool />
+                            </div>
+                            <div
+                                label={
+                                    <span style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
+                                        <span style={{ fontSize: '16px', lineHeight: 1 }}>🤖</span>
+                                        <Localize i18n_default_text='Auto Trader' />
+                                    </span>
+                                }
+                                id='id-auto-trader'
+                            >
+                                <AutoTrader />
+                            </div>
+                            <div
+                                label={
+                                    <span style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
+                                        <span style={{ fontSize: '16px', lineHeight: 1 }}>🖐️</span>
+                                        <Localize i18n_default_text='Manual' />
+                                    </span>
+                                }
+                                id='id-manual-trader'
+                            >
+                                <ManualTrader />
+                            </div>
+                            <div
+                                label={
+                                    <span style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
+                                        <span style={{ fontSize: '16px', lineHeight: 1 }}>📦</span>
+                                        <Localize i18n_default_text='Bulk Trader' />
+                                    </span>
+                                }
+                                id='id-bulk-trader'
+                            >
+                                <BulkTrader />
+                            </div>
+                            <div
+                                label={
+                                    <span style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
+                                        <span style={{ fontSize: '16px', lineHeight: 1 }}>🛡️</span>
+                                        <Localize i18n_default_text='Hedging' />
+                                    </span>
+                                }
+                                id='id-hedging'
+                            >
+                                <HedgingCenter />
+                            </div>
+                            <div
+                                label={
                                     <>
                                         <LabelPairedChartLineCaptionRegularIcon
                                             height='24px'
@@ -366,7 +451,7 @@ const AppWrapper = observer(() => {
                             <div
                                 label={
                                     <span style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
-                                        <span style={{ fontSize: '16px', lineHeight: 1 }}>🤖</span>
+                                        <span style={{ fontSize: '16px', lineHeight: 1 }}>🌐</span>
                                         <Localize i18n_default_text='AI Trading' />
                                     </span>
                                 }
