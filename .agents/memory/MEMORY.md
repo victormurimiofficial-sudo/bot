@@ -1,3 +1,4 @@
-- [AI Trading Suite](ai-trading-suite.md) — self-contained 8-phase feature; singleton MobX store; dev server is HTTPS port 8443 (rsbuild + pluginBasicSsl).
+- [AI Trading Suite](ai-trading-suite.md) — self-contained 11-tab feature; singleton MobX store; dev server is HTTPS port 8443 (rsbuild + pluginBasicSsl).
 - [Dep install quirk](dep-install-quirk.md) — npm install requires --no-package-lock flag due to shell-quote@1.8.3 firewall block; i18next/react-i18next must also be installed for translations to resolve.
 - [Spinner fix — invalid App ID](spinner-fix.md) — four-layer fix so spinner never hangs regardless of bad/stale App ID in localStorage.
+- [Nav tab registration pattern](nav-tab-pattern.md) — adding a tab requires 4 sync edits: DBOT_TABS constant, TAB_IDS array, hash array in main.tsx, and a new <div> child inside <Tabs>.
