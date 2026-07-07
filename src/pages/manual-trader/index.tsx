@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import './manual-trader.scss';
 
 const MARKETS = [
@@ -62,6 +62,16 @@ const ManualTrader: React.FC = () => {
     const [trades, setTrades] = useState<Trade[]>([]);
     const [pending, setPending] = useState<string | null>(null);
     const [totalPnl, setTotalPnl] = useState(0);
+    const pendingTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+    const mountedRef = useRef(true);
+
+    useEffect(() => {
+        mountedRef.current = true;
+        return () => {
+            mountedRef.current = false;
+            if (pendingTimerRef.current) clearTimeout(pendingTimerRef.current);
+        };
+    }, []);
 
     useEffect(() => {
         const base = BASE_PRICES[market] ?? 3200;
@@ -79,8 +89,9 @@ const ManualTrader: React.FC = () => {
     const placeTrade = (side: string) => {
         const s = parseFloat(stake) || 0.5;
         setPending(side);
-        setTimeout(
+        pendingTimerRef.current = setTimeout(
             () => {
+                if (!mountedRef.current) return;
                 const win = Math.random() > 0.45;
                 const pnl = win ? parseFloat((s * 0.92).toFixed(2)) : -s;
                 const now = new Date();

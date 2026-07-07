@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { standalone_routes } from '@/components/shared';
 import { useDevice } from '@deriv-com/ui';
 import './app-logo.scss';
@@ -6,7 +6,22 @@ import './app-logo.scss';
 export const AppLogo = () => {
     const { isDesktop } = useDevice();
     const [show_social, setShowSocial] = useState(false);
-    const popup_ref = useRef<HTMLDivElement>(null);
+    const btn_ref = useRef<HTMLDivElement>(null);
+
+    const handleOutsideClick = useCallback((e: MouseEvent) => {
+        if (btn_ref.current && !btn_ref.current.contains(e.target as Node)) {
+            setShowSocial(false);
+        }
+    }, []);
+
+    useEffect(() => {
+        if (show_social) {
+            document.addEventListener('mousedown', handleOutsideClick);
+        }
+        return () => {
+            document.removeEventListener('mousedown', handleOutsideClick);
+        };
+    }, [show_social, handleOutsideClick]);
 
     const handleSocialToggle = (e: React.MouseEvent) => {
         e.preventDefault();
@@ -14,28 +29,17 @@ export const AppLogo = () => {
         setShowSocial(v => !v);
     };
 
-    const handleOutsideClick = (e: MouseEvent) => {
-        if (popup_ref.current && !popup_ref.current.contains(e.target as Node)) {
-            setShowSocial(false);
-        }
-    };
-
-    // Close on outside click
-    if (show_social) {
-        document.addEventListener('mousedown', handleOutsideClick, { once: true });
-    }
-
     if (!isDesktop) return null;
     return (
         <a className='app-header__logo' href={standalone_routes.deriv_com} target='_blank' rel='noopener noreferrer'>
             <span className='app-header__brand'>VeneeFX</span>
             <div
+                ref={btn_ref}
                 className='app-header__social-btn'
                 role='button'
                 tabIndex={0}
                 aria-label='Socials'
                 onClick={handleSocialToggle}
-                ref={popup_ref as React.RefObject<HTMLDivElement>}
             >
                 {/* Phone / Contact icon */}
                 <svg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>

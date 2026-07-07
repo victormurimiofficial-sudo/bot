@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import './bulk-trader.scss';
 
 const MARKETS = [
@@ -85,6 +85,17 @@ const BulkTrader: React.FC = () => {
     const [noOfTrades, setNoOfTrades] = useState('1');
     const [pending, setPending] = useState<string | null>(null);
     const [results, setResults] = useState<{ side: string; win: boolean; pnl: number }[]>([]);
+    const mountedRef = useRef(true);
+    const pendingTimersRef = useRef<ReturnType<typeof setTimeout>[]>([]);
+
+    useEffect(() => {
+        mountedRef.current = true;
+        return () => {
+            mountedRef.current = false;
+            pendingTimersRef.current.forEach(t => clearTimeout(t));
+            pendingTimersRef.current = [];
+        };
+    }, []);
 
     useEffect(() => {
         const base = BASE_PRICES[market] ?? 3200;
@@ -138,13 +149,15 @@ const BulkTrader: React.FC = () => {
         let done = 0;
         const allRes: { side: string; win: boolean; pnl: number }[] = [];
         const doOne = () => {
+            if (!mountedRef.current) return;
             if (done >= count) {
                 setResults(prev => [...allRes, ...prev].slice(0, 50));
                 setPending(null);
                 return;
             }
-            setTimeout(
+            const tid = setTimeout(
                 () => {
+                    if (!mountedRef.current) return;
                     const win = Math.random() > 0.45;
                     allRes.push({ side, win, pnl: win ? parseFloat((s * 0.92).toFixed(2)) : -s });
                     done++;
@@ -152,6 +165,7 @@ const BulkTrader: React.FC = () => {
                 },
                 parseInt(ticks) * 400 + Math.random() * 300
             );
+            pendingTimersRef.current.push(tid);
         };
         doOne();
     };
