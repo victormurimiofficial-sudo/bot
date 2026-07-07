@@ -28,9 +28,11 @@ import { requestOidcAuthentication } from '@deriv-com/auth-client';
 import { Localize, localize } from '@deriv-com/translations';
 import { useDevice } from '@deriv-com/ui';
 import RunPanel from '../../components/run-panel';
+import AiTradingPage from '../ai-trading';
 import ChartModal from '../chart/chart-modal';
 import Dashboard from '../dashboard';
 import RunStrategy from '../dashboard/run-strategy';
+import DTrader from '../dtrader';
 import './main.scss';
 
 const ChartWrapper = lazy(() => import('../chart/chart-wrapper'));
@@ -66,7 +68,7 @@ const AppWrapper = observer(() => {
     const { clear } = summary_card;
     const { DASHBOARD, BOT_BUILDER } = DBOT_TABS;
     const init_render = React.useRef(true);
-    const hash = ['dashboard', 'bot_builder', 'chart', 'tutorial'];
+    const hash = ['dashboard', 'bot_builder', 'dtrader', 'chart', 'tutorial', 'ai_trading'];
     const { isDesktop } = useDevice();
     const location = useLocation();
     const navigate = useNavigate();
@@ -85,7 +87,7 @@ const AppWrapper = observer(() => {
 
     React.useEffect(() => {
         const el_dashboard = document.getElementById('id-dbot-dashboard');
-        const el_tutorial = document.getElementById('id-tutorials');
+        const el_tutorial = document.getElementById('id-ai-trading') ?? document.getElementById('id-tutorials');
 
         const observer_dashboard = new window.IntersectionObserver(
             ([entry]) => {
@@ -305,6 +307,17 @@ const AppWrapper = observer(() => {
                             />
                             <div
                                 label={
+                                    <span style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
+                                        <span style={{ fontSize: '16px', lineHeight: 1 }}>📈</span>
+                                        <Localize i18n_default_text='DTrader' />
+                                    </span>
+                                }
+                                id='id-dtrader'
+                            >
+                                <DTrader />
+                            </div>
+                            <div
+                                label={
                                     <>
                                         <LabelPairedChartLineCaptionRegularIcon
                                             height='24px'
@@ -349,6 +362,17 @@ const AppWrapper = observer(() => {
                                         <Tutorial handleTabChange={handleTabChange} />
                                     </Suspense>
                                 </div>
+                            </div>
+                            <div
+                                label={
+                                    <span style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
+                                        <span style={{ fontSize: '16px', lineHeight: 1 }}>🤖</span>
+                                        <Localize i18n_default_text='AI Trading' />
+                                    </span>
+                                }
+                                id='id-ai-trading'
+                            >
+                                <AiTradingPage />
                             </div>
                         </Tabs>
                         {!isDesktop && right_tab_shadow && <span className='tabs-shadow tabs-shadow--right' />}{' '}

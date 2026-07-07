@@ -1,0 +1,231 @@
+// ─── AI Trading Page (inline full-width tab) ──────────────────
+.ai-trading-page {
+    display: flex;
+    flex-direction: column;
+    min-height: calc(100vh - 56px);
+    background: var(--ats-bg-primary, #0f1117);
+    color: var(--ats-text, #e2e8f0);
+
+    // ── Header ─────────────────────────────────────────────────
+    &__header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 14px 24px;
+        background: var(--ats-bg-secondary, #161b27);
+        border-bottom: 1px solid var(--ats-bg-tertiary, #1e2533);
+        gap: 20px;
+        flex-wrap: wrap;
+    }
+
+    &__brand {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+    }
+
+    &__icon {
+        font-size: 28px;
+    }
+
+    &__title {
+        font-size: 17px;
+        font-weight: 800;
+        color: var(--ats-text, #e2e8f0);
+        letter-spacing: -0.3px;
+    }
+
+    &__subtitle {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        font-size: 12px;
+        color: var(--ats-text-muted, #6b7280);
+        margin-top: 3px;
+    }
+
+    &__header-stats {
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+    }
+
+    &__header-stat {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2px;
+
+        &-label {
+            font-size: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--ats-text-muted, #6b7280);
+        }
+
+        &-val {
+            font-size: 20px;
+            font-weight: 800;
+            font-variant-numeric: tabular-nums;
+        }
+    }
+
+    // ── Tab Bar ─────────────────────────────────────────────────
+    &__tabbar {
+        display: flex;
+        overflow-x: auto;
+        background: var(--ats-bg-secondary, #161b27);
+        border-bottom: 2px solid var(--ats-bg-tertiary, #1e2533);
+        padding: 0 16px;
+        gap: 2px;
+
+        &::-webkit-scrollbar {
+            height: 3px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background: var(--ats-bg-tertiary);
+            border-radius: 3px;
+        }
+    }
+
+    &__tab {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        padding: 10px 16px;
+        border: none;
+        background: transparent;
+        color: var(--ats-text-muted, #6b7280);
+        font-size: 13px;
+        font-weight: 600;
+        cursor: pointer;
+        white-space: nowrap;
+        border-bottom: 2px solid transparent;
+        margin-bottom: -2px;
+        transition: all 0.15s;
+        position: relative;
+
+        &:hover {
+            color: var(--ats-text, #e2e8f0);
+        }
+
+        &--active {
+            color: var(--ats-accent, #00c9b7);
+            border-bottom-color: var(--ats-accent, #00c9b7);
+        }
+
+        &-badge {
+            background: #ff6b6b;
+            color: #fff;
+            font-size: 9px;
+            font-weight: 700;
+            padding: 1px 5px;
+            border-radius: 8px;
+            min-width: 16px;
+            text-align: center;
+        }
+    }
+
+    // ── Content ─────────────────────────────────────────────────
+    &__content {
+        flex: 1;
+        overflow-y: auto;
+
+        &::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background: var(--ats-bg-tertiary);
+            border-radius: 3px;
+        }
+    }
+}
+
+// ─── Enhanced Scanner (full-width grid layout) ────────────────
+.ai-trading-scanner {
+    padding: 16px 20px;
+
+    &__toolbar {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-bottom: 16px;
+    }
+
+    &__header {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    &__title {
+        font-size: 15px;
+        font-weight: 700;
+        color: var(--ats-text, #e2e8f0);
+    }
+
+    &__count {
+        margin-left: auto;
+        font-size: 11px;
+        color: var(--ats-text-muted, #6b7280);
+        background: var(--ats-bg-secondary, #161b27);
+        padding: 3px 10px;
+        border-radius: 10px;
+        border: 1px solid var(--ats-bg-tertiary, #1e2533);
+    }
+
+    &__controls {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    &__filter-group {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        flex-wrap: wrap;
+    }
+
+    &__control-label {
+        font-size: 11px;
+        font-weight: 600;
+        color: var(--ats-text-muted, #6b7280);
+        white-space: nowrap;
+    }
+
+    &__filter-btn {
+        padding: 5px 12px;
+        border-radius: 6px;
+        border: 1px solid var(--ats-bg-tertiary, #1e2533);
+        background: transparent;
+        color: var(--ats-text-muted, #6b7280);
+        font-size: 11px;
+        font-weight: 600;
+        cursor: pointer;
+        white-space: nowrap;
+        transition: all 0.12s;
+
+        &:hover {
+            border-color: var(--ats-accent, #00c9b7);
+            color: var(--ats-accent, #00c9b7);
+        }
+
+        &--active {
+            background: rgb(0 201 183 / 10%);
+            border-color: var(--ats-accent, #00c9b7);
+            color: var(--ats-accent, #00c9b7);
+        }
+    }
+
+    // Grid: 3 columns on large screens, 2 on medium, 1 on small
+    &__grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        gap: 12px;
+    }
+}

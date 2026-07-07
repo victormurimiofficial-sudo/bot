@@ -19,15 +19,30 @@ const randInt = (min: number, max: number) => Math.floor(rand(min, max + 1));
 const pick = <T>(arr: T[]): T => arr[Math.floor(Math.random() * arr.length)];
 
 const BASE_ASSETS: { id: string; name: string; symbol: string }[] = [
-    { id: 'vol10', name: 'Volatility 10 (1s)', symbol: 'R_10' },
+    // ── Volatility indices ──────────────────────────────────────
+    { id: 'vol10', name: 'Volatility 10', symbol: 'R_10' },
+    { id: 'vol10_1s', name: 'Volatility 10 (1s)', symbol: '1HZ10V' },
+    { id: 'vol15', name: 'Volatility 15', symbol: 'R_15' },
+    { id: 'vol15_1s', name: 'Volatility 15 (1s)', symbol: '1HZ15V' },
     { id: 'vol25', name: 'Volatility 25', symbol: 'R_25' },
+    { id: 'vol25_1s', name: 'Volatility 25 (1s)', symbol: '1HZ25V' },
     { id: 'vol50', name: 'Volatility 50', symbol: 'R_50' },
+    { id: 'vol50_1s', name: 'Volatility 50 (1s)', symbol: '1HZ50V' },
     { id: 'vol75', name: 'Volatility 75', symbol: 'R_75' },
+    { id: 'vol75_1s', name: 'Volatility 75 (1s)', symbol: '1HZ75V' },
     { id: 'vol100', name: 'Volatility 100', symbol: 'R_100' },
-    { id: 'boom300', name: 'Boom 300', symbol: 'BOOM300' },
-    { id: 'crash300', name: 'Crash 300', symbol: 'CRASH300' },
-    { id: 'step', name: 'Step Index', symbol: 'STEP_INDEX' },
-    { id: 'synfx1', name: 'Synthetic FX EUR/USD', symbol: 'SYNTH_EURUSD' },
+    { id: 'vol100_1s', name: 'Volatility 100 (1s)', symbol: '1HZ100V' },
+    // ── Crash/Boom ──────────────────────────────────────────────
+    { id: 'boom300', name: 'Boom 300', symbol: 'BOOM300N' },
+    { id: 'boom500', name: 'Boom 500', symbol: 'BOOM500' },
+    { id: 'boom1000', name: 'Boom 1000', symbol: 'BOOM1000' },
+    { id: 'crash300', name: 'Crash 300', symbol: 'CRASH300N' },
+    { id: 'crash500', name: 'Crash 500', symbol: 'CRASH500' },
+    { id: 'crash1000', name: 'Crash 1000', symbol: 'CRASH1000' },
+    // ── Other ────────────────────────────────────────────────────
+    { id: 'step', name: 'Step Index', symbol: 'STPIDX' },
+    { id: 'rngbr100', name: 'Range Break 100', symbol: 'RNGBR100' },
+    { id: 'rngbr200', name: 'Range Break 200', symbol: 'RNGBR200' },
 ];
 
 const STRATEGIES = [
