@@ -20,6 +20,7 @@ const MARKETS = [
 ];
 
 const TRADE_TYPES = ['Even/Odd', 'Over/Under', 'Matches/Differs', 'Rise/Fall'];
+const DIGITS = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 
 const STRATEGIES = [
     {
@@ -88,6 +89,7 @@ const HedgingCenter: React.FC = () => {
     const [primaryMarket, setPrimaryMarket] = useState('Volatility 50 Index');
     const [secondaryMarket, setSecondaryMarket] = useState('Volatility 75 Index');
     const [tradeType, setTradeType] = useState('Even/Odd');
+    const [barrierDigit, setBarrierDigit] = useState(5);
     const [stakeA, setStakeA] = useState('1.00');
     const [stakeB, setStakeB] = useState('1.50');
     const [ticks, setTicks] = useState('5');
@@ -159,6 +161,27 @@ const HedgingCenter: React.FC = () => {
                             ))}
                         </select>
                     </div>
+                    {tradeType === 'Over/Under' && (
+                        <div className='hedging__field'>
+                            <label className='hedging__label'>BARRIER DIGIT</label>
+                            <div className='hedging__digit-picker'>
+                                {DIGITS.map(d => (
+                                    <button
+                                        key={d}
+                                        className={`hedging__digit-btn${barrierDigit === d ? ' hedging__digit-btn--active' : ''}`}
+                                        onClick={() => setBarrierDigit(d)}
+                                    >
+                                        {d}
+                                    </button>
+                                ))}
+                            </div>
+                            <span className='hedging__digit-hint'>
+                                {barrierDigit === 5
+                                    ? 'Over 5: last digit > 5 | Under 5: last digit < 5'
+                                    : `Over ${barrierDigit}: last digit > ${barrierDigit} | Under ${barrierDigit}: last digit < ${barrierDigit}`}
+                            </span>
+                        </div>
+                    )}
                     <div className='hedging__field'>
                         <label className='hedging__label'>SECONDARY MARKET</label>
                         <select

@@ -37,6 +37,7 @@ import Dashboard from '../dashboard';
 import RunStrategy from '../dashboard/run-strategy';
 import DTrader from '../dtrader';
 import HedgingCenter from '../hedging';
+import SmartReader from '../smart-reader';
 import ManualTrader from '../manual-trader';
 import SpeedBot from '../speedbot';
 import './main.scss';
@@ -78,6 +79,7 @@ const AppWrapper = observer(() => {
         'dashboard',
         'bot_builder',
         'dtrader',
+        'smart_reader',
         'speedbot',
         'analysis_tool',
         'auto_trader',
@@ -327,6 +329,17 @@ const AppWrapper = observer(() => {
                                 id='id-dtrader'
                             >
                                 <DTrader />
+                            </div>
+                            <div
+                                label={
+                                    <span style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
+                                        <span style={{ fontSize: '16px', lineHeight: 1 }}>🔭</span>
+                                        <Localize i18n_default_text='Smart Reader' />
+                                    </span>
+                                }
+                                id='id-smart-reader'
+                            >
+                                <SmartReader />
                             </div>
                             <div
                                 label={

@@ -3,6 +3,19 @@ import { standalone_routes } from '@/components/shared';
 import { useDevice } from '@deriv-com/ui';
 import './app-logo.scss';
 
+const LINKS = [
+    { label: 'WhatsApp', url: 'https://wa.link/0rkrq4', icon: '💬', cls: 'vfx-wa' },
+    { label: 'TikTok', url: 'https://www.tiktok.com/@venee_fx?_r=1&_t=ZS-97pP44Daga5', icon: '🎵', cls: 'vfx-tt' },
+    { label: 'YouTube', url: 'https://www.youtube.com/@veneefx', icon: '▶️', cls: 'vfx-yt' },
+    { label: 'Instagram', url: 'https://www.instagram.com/venee_fx?igsh=eXBjdzh6dXp1Zm96&utm_source=qr', icon: '📸', cls: 'vfx-ig' },
+    { label: 'Join Community', url: 'https://veneefx.vercel.app', icon: '🌐', cls: 'vfx-web' },
+    { label: 'Create Deriv Account', url: 'https://track.deriv.com/_5W6V5tZmyrdMjdsyM5hasGNd7ZgqdRLk/1/', icon: '📊', cls: 'vfx-deriv' },
+    { label: 'Trade Multipliers', url: 'https://track.deriv.com/_Ca_gsAmEH-c9F-13urvbiWNd7ZgqdRLk/1/', icon: '✖️', cls: 'vfx-mul' },
+    { label: 'OKX Account', url: 'https://okx.com/join/50840541', icon: '🔶', cls: 'vfx-okx' },
+    { label: 'JustMarkets (1:3000)', url: 'https://one.justmarkets.link/a/j2anw0t47z', icon: '📈', cls: 'vfx-jm' },
+    { label: 'HFM Account', url: 'https://register.hfm.com/ke/en/new-live-account/?refid=30423585', icon: '🏦', cls: 'vfx-hfm' },
+];
+
 export const AppLogo = () => {
     const { isDesktop } = useDevice();
     const [show_social, setShowSocial] = useState(false);
@@ -47,26 +60,19 @@ export const AppLogo = () => {
                 </svg>
                 {show_social && (
                     <div className='app-header__social-popup'>
-                        <a
-                            className='vfx-wa'
-                            href='https://wa.me/254700000000'
-                            target='_blank'
-                            rel='noopener noreferrer'
-                            onClick={e => e.stopPropagation()}
-                        >
-                            <span className='vfx-social-icon'>💬</span>
-                            WhatsApp
-                        </a>
-                        <a
-                            className='vfx-tt'
-                            href='https://tiktok.com/@veneefx'
-                            target='_blank'
-                            rel='noopener noreferrer'
-                            onClick={e => e.stopPropagation()}
-                        >
-                            <span className='vfx-social-icon'>🎵</span>
-                            TikTok
-                        </a>
+                        {LINKS.map(link => (
+                            <a
+                                key={link.label}
+                                className={link.cls}
+                                href={link.url}
+                                target='_blank'
+                                rel='noopener noreferrer'
+                                onClick={e => e.stopPropagation()}
+                            >
+                                <span className='vfx-social-icon'>{link.icon}</span>
+                                {link.label}
+                            </a>
+                        ))}
                     </div>
                 )}
             </div>

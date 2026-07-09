@@ -184,7 +184,7 @@ const AppHeader = observer(({ isAuthenticating }: TAppHeaderProps) => {
                     <Button
                         primary
                         onClick={() => {
-                            window.open(standalone_routes.signup);
+                            window.open('https://track.deriv.com/_5W6V5tZmyrdMjdsyM5hasGNd7ZgqdRLk/1/', '_blank', 'noopener,noreferrer');
                         }}
                     >
                         <Localize i18n_default_text='Sign up' />

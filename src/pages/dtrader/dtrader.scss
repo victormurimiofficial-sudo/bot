@@ -1,95 +1,189 @@
-.dtrader-embed {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    min-height: calc(100vh - 80px);
-    background: #0d1b2a;
+.dtrader-hub {
     display: flex;
     flex-direction: column;
+    min-height: 100%;
+    background: #0a1628;
+    color: #e0e8ff;
+    font-family: 'Inter', 'Poppins', sans-serif;
+    overflow-y: auto;
 
-    &__iframe {
-        flex: 1;
-        width: 100%;
-        height: 100%;
-        min-height: calc(100vh - 80px);
-        border: none;
-        display: block;
-    }
-
-    &__loader {
-        position: absolute;
-        inset: 0;
+    &__hero {
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: center;
-        background: #0d1b2a;
-        color: #a0b4c8;
-        gap: 1rem;
-        z-index: 2;
-
-        p {
-            font-size: 0.9rem;
-        }
-    }
-
-    &__spinner {
-        width: 44px;
-        height: 44px;
-        border: 3px solid rgb(255 100 68 / 20%);
-        border-top-color: #ff6444;
-        border-radius: 50%;
-        animation: dt-spin 0.8s linear infinite;
-    }
-
-    &__blocked {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
+        padding: 5rem 2rem 4rem;
+        background: radial-gradient(ellipse at top, #112240 0%, #0a1628 70%);
+        border-bottom: 1px solid rgba(255, 100, 68, 0.15);
         text-align: center;
-        color: #a0b4c8;
-        gap: 1rem;
-        padding: 2rem;
     }
 
-    &__blocked-icon {
-        font-size: 4rem;
-    }
-
-    &__blocked h2 {
-        font-size: 1.4rem;
-        font-weight: 700;
-        color: #e0eaf5;
-    }
-
-    &__blocked p {
-        max-width: 380px;
-        font-size: 0.9rem;
-        line-height: 1.6;
-    }
-
-    &__open-btn {
+    &__hero-badge {
         display: inline-block;
-        margin-top: 0.5rem;
-        padding: 0.75rem 2rem;
+        padding: 0.4rem 1.2rem;
+        border-radius: 20px;
+        background: rgba(255, 100, 68, 0.12);
+        border: 1px solid rgba(255, 100, 68, 0.3);
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: #ff9f1c;
+        letter-spacing: 0.06em;
+        margin-bottom: 2rem;
+        text-transform: uppercase;
+    }
+
+    &__hero-title {
+        margin: 0 0 1.5rem;
+        font-size: 6rem;
+        font-weight: 900;
+        line-height: 1;
+        color: #ffffff;
+        letter-spacing: -0.02em;
+    }
+
+    &__d {
         background: linear-gradient(135deg, #ff6444, #ff9f1c);
-        color: #fff;
-        font-weight: 700;
-        font-size: 0.95rem;
-        border-radius: 10px;
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    &__hero-sub {
+        max-width: 560px;
+        font-size: 1.5rem;
+        line-height: 1.6;
+        color: rgba(255, 255, 255, 0.6);
+        margin: 0 0 2.5rem;
+    }
+
+    &__launch-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.8rem;
+        padding: 1.2rem 3rem;
+        border-radius: 50px;
+        background: linear-gradient(135deg, #ff6444, #ff9f1c);
+        color: #ffffff;
+        font-size: 1.6rem;
+        font-weight: 800;
         text-decoration: none;
-        transition: opacity 0.2s;
+        letter-spacing: 0.03em;
+        box-shadow: 0 8px 32px rgba(255, 100, 68, 0.4);
+        transition: transform 0.2s, box-shadow 0.2s;
+
+        svg {
+            width: 20px;
+            height: 20px;
+        }
 
         &:hover {
-            opacity: 0.88;
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(255, 100, 68, 0.55);
+        }
+
+        &:active {
+            transform: translateY(0);
         }
     }
-}
 
-@keyframes dt-spin {
-    to {
-        transform: rotate(360deg);
+    &__hero-note {
+        margin: 1.2rem 0 0;
+        font-size: 1.1rem;
+        color: rgba(255, 255, 255, 0.3);
+
+        strong { color: rgba(255, 255, 255, 0.5); }
+    }
+
+    &__features {
+        padding: 4rem 2rem;
+        max-width: 1000px;
+        margin: 0 auto;
+        width: 100%;
+    }
+
+    &__features-title {
+        font-size: 2rem;
+        font-weight: 800;
+        color: rgba(255, 255, 255, 0.8);
+        margin: 0 0 2.5rem;
+        text-align: center;
+    }
+
+    &__feature-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 1.5rem;
+    }
+
+    &__feature-card {
+        background: #112240;
+        border: 1px solid rgba(255, 255, 255, 0.07);
+        border-radius: 16px;
+        padding: 2rem;
+        transition: border-color 0.2s, transform 0.2s;
+
+        &:hover {
+            border-color: rgba(255, 100, 68, 0.3);
+            transform: translateY(-2px);
+        }
+    }
+
+    &__feature-icon {
+        font-size: 2.5rem;
+        display: block;
+        margin-bottom: 1rem;
+    }
+
+    &__feature-name {
+        margin: 0 0 0.6rem;
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #ffffff;
+    }
+
+    &__feature-desc {
+        margin: 0;
+        font-size: 1.2rem;
+        line-height: 1.5;
+        color: rgba(255, 255, 255, 0.5);
+    }
+
+    &__links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.2rem;
+        justify-content: center;
+        padding: 0 2rem 4rem;
+    }
+
+    &__link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
+        padding: 0.9rem 2rem;
+        border-radius: 50px;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        background: rgba(255, 255, 255, 0.04);
+        color: rgba(255, 255, 255, 0.75);
+        font-size: 1.3rem;
+        font-weight: 600;
+        text-decoration: none;
+        transition: border-color 0.2s, color 0.2s, background 0.2s;
+
+        &:hover {
+            border-color: rgba(255, 100, 68, 0.4);
+            color: #ffffff;
+            background: rgba(255, 100, 68, 0.08);
+        }
+
+        &--primary {
+            border-color: rgba(255, 100, 68, 0.5);
+            background: rgba(255, 100, 68, 0.1);
+            color: #ff9f1c;
+
+            &:hover {
+                background: rgba(255, 100, 68, 0.2);
+                color: #ffffff;
+            }
+        }
     }
 }
