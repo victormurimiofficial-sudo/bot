@@ -132,9 +132,11 @@ const DTrader: React.FC = () => {
     const tickSubRef = useRef<{ unsubscribe: () => void } | null>(null);
     const proposalSubRef = useRef<{ unsubscribe: () => void } | null>(null);
     const contractSubsRef = useRef<Map<number, { unsubscribe: () => void }>>(new Map());
-    const msgSubRef = useRef<{ unsubscribe: () => void } | null>(null);
     const proposalTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
     const mountedRef = useRef(true);
+    // Version tokens to discard stale async responses
+    const tickVersionRef = useRef(0);
+    const proposalVersionRef = useRef(0);
 
     const market = MARKETS[marketIdx];
     const tradeType = TRADE_TYPES[tradeTypeIdx];
@@ -152,7 +154,10 @@ const DTrader: React.FC = () => {
 
     /* ── Tick subscription ── */
     const subscribeTicks = useCallback(async (symbol: string) => {
-        // Forget previous tick subscription
+        // Increment version so any in-flight async from prior call is discarded
+        const myVersion = ++tickVersionRef.current;
+
+        // Tear down old subscription synchronously before any await
         if (tickSubRef.current) {
             tickSubRef.current.unsubscribe();
             tickSubRef.current = null;
@@ -162,31 +167,45 @@ const DTrader: React.FC = () => {
 
         try {
             if (!api_base?.api) return;
-            // forget any existing ticks for this symbol
-            await api_base.api.send({ forget_all: 'ticks' }).catch(() => null);
 
+            // Attach listener BEFORE the await so no ticks slip through
             const msgSub = api_base.api.onMessage()?.subscribe(({ data }: any) => {
-                if (!mountedRef.current) return;
+                if (!mountedRef.current || tickVersionRef.current !== myVersion) return;
                 if (data?.msg_type === 'tick' && data?.tick) {
                     const quote: number = data.tick.quote;
                     const quoteStr = quote.toFixed(2);
-                    const digit = parseInt(quoteStr.slice(-1), 10);
                     setLivePrice(quoteStr);
-                    setLastDigit(digit);
+                    setLastDigit(parseInt(quoteStr.slice(-1), 10));
                 }
             });
 
+            // Store ref immediately so a subsequent call can unsubscribe it
+            if (msgSub) tickSubRef.current = msgSub;
+
+            // Now kick off the network request
+            await api_base.api.send({ forget_all: 'ticks' }).catch(() => null);
+
+            if (tickVersionRef.current !== myVersion) {
+                // A newer call already took over; clean up our listener
+                msgSub?.unsubscribe();
+                if (tickSubRef.current === msgSub) tickSubRef.current = null;
+                return;
+            }
+
             const res = await api_base.api.send({ ticks: symbol, subscribe: 1 });
+
+            if (tickVersionRef.current !== myVersion) return; // stale
+
             if (res?.tick) {
                 const quote: number = res.tick.quote;
                 const quoteStr = quote.toFixed(2);
                 setLivePrice(quoteStr);
                 setLastDigit(parseInt(quoteStr.slice(-1), 10));
             }
-
-            if (msgSub) tickSubRef.current = msgSub;
         } catch (e: any) {
-            if (mountedRef.current) setError(e?.error?.message ?? 'Failed to subscribe to ticks');
+            if (mountedRef.current && tickVersionRef.current === myVersion) {
+                setError(e?.error?.message ?? 'Failed to subscribe to ticks');
+            }
         }
     }, []);
 
@@ -209,6 +228,10 @@ const DTrader: React.FC = () => {
     /* ── Proposal request ── */
     const fetchProposals = useCallback(async () => {
         if (!api_base?.api || !isAuthorized) return;
+
+        // Increment nonce so any in-flight responses from prior fetch are rejected
+        const myVersion = ++proposalVersionRef.current;
+
         setProposalLoading(true);
         setProposals({});
         setError(null);
@@ -216,6 +239,9 @@ const DTrader: React.FC = () => {
         const stakeNum = parseFloat(stake) || 1;
         const durationNum = parseInt(duration) || 5;
         const isDigit = ['DIGITEVEN', 'DIGITODD', 'DIGITOVER', 'DIGITUNDER', 'DIGITMATCH', 'DIGITDIFF'];
+
+        // Use a unique passthrough nonce so responses can be correlated to this exact fetch
+        const fetchNonce = `pv${myVersion}`;
 
         const requests = tradeType.sides.map(side => ({
             proposal: 1,
@@ -226,11 +252,12 @@ const DTrader: React.FC = () => {
             duration: durationNum,
             duration_unit: 't',
             symbol: market.symbol,
+            passthrough: { fetchNonce },
             ...(tradeType.hasBarrier && isDigit.includes(side.contract_type) && { barrier }),
             ...(tradeType.hasBarrier && !isDigit.includes(side.contract_type) && { barrier: `+${barrier}` }),
         }));
 
-        // Cancel old proposal subscription
+        // Tear down old proposal subscription synchronously before any await
         proposalSubRef.current?.unsubscribe();
         proposalSubRef.current = null;
 
@@ -239,13 +266,15 @@ const DTrader: React.FC = () => {
         setProposals({ ...newProposals });
 
         try {
-            // Listen for proposal responses
+            // Attach listener before sends; only accept responses with our fetchNonce
             const sub = api_base.api.onMessage()?.subscribe(({ data }: any) => {
                 if (!mountedRef.current) return;
+                if (proposalVersionRef.current !== myVersion) return; // stale fetch
                 if (data?.msg_type === 'proposal' && data?.proposal) {
                     const p = data.proposal;
                     const ct = data.echo_req?.contract_type;
-                    if (ct) {
+                    const nonce = data.echo_req?.passthrough?.fetchNonce ?? data.passthrough?.fetchNonce;
+                    if (ct && nonce === fetchNonce) {
                         setProposals(prev => ({
                             ...prev,
                             [ct]: { id: p.id, ask_price: p.ask_price, payout: p.payout, longcode: p.longcode },
@@ -258,9 +287,13 @@ const DTrader: React.FC = () => {
             // Send all proposal requests
             await Promise.all(requests.map(r => api_base.api.send(r)));
         } catch (e: any) {
-            if (mountedRef.current) setError(e?.error?.message ?? 'Failed to fetch proposals');
+            if (mountedRef.current && proposalVersionRef.current === myVersion) {
+                setError(e?.error?.message ?? 'Failed to fetch proposals');
+            }
         } finally {
-            if (mountedRef.current) setProposalLoading(false);
+            if (mountedRef.current && proposalVersionRef.current === myVersion) {
+                setProposalLoading(false);
+            }
         }
     }, [stake, duration, barrier, tradeType, market, isAuthorized]);
 
