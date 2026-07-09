@@ -1,7 +1,7 @@
 .hedging {
-    background: #0d1b2a;
+    background: #f7f8fc;
     min-height: 100%;
-    color: #e0eaf5;
+    color: #1a1a2e;
     display: flex;
     flex-direction: column;
     gap: 0;
@@ -43,15 +43,15 @@
         font-size: 0.62rem;
         font-weight: 700;
         letter-spacing: 0.07em;
-        color: rgb(255 255 255 / 40%);
+        color: #5a6282;
         text-transform: uppercase;
     }
 
     &__select,
     &__input {
-        background: #112240;
+        background: #ffffff;
         border: 1px solid rgb(255 255 255 / 10%);
-        color: #e0eaf5;
+        color: #1a1a2e;
         padding: 0.6rem 0.8rem;
         border-radius: 8px;
         font-size: 0.85rem;
@@ -81,7 +81,7 @@
     }
 
     &__metric-card {
-        background: #0f2035;
+        background: #f0f2f8;
         border: 1px solid rgb(255 255 255 / 7%);
         border-radius: 10px;
         padding: 0.7rem 0.6rem;
@@ -93,7 +93,7 @@
 
     &__metric-label {
         font-size: 0.6rem;
-        color: rgb(255 255 255 / 40%);
+        color: #5a6282;
         font-weight: 700;
         text-align: center;
         letter-spacing: 0.04em;
@@ -107,7 +107,7 @@
     &__section-title {
         font-size: 0.78rem;
         font-weight: 700;
-        color: rgb(255 255 255 / 45%);
+        color: #5a6282;
         letter-spacing: 0.05em;
         text-transform: uppercase;
         margin-bottom: 0.7rem;
@@ -145,7 +145,7 @@
     }
 
     &__monitor-card {
-        background: #0f2035;
+        background: #f0f2f8;
         border: 1px solid rgb(255 255 255 / 6%);
         border-radius: 8px;
         padding: 0.6rem;
@@ -157,7 +157,7 @@
 
     &__monitor-label {
         font-size: 0.58rem;
-        color: rgb(255 255 255 / 38%);
+        color: #8a94b2;
         font-weight: 700;
         text-align: center;
         text-transform: uppercase;
@@ -178,7 +178,7 @@
     &__risk-track {
         flex: 1;
         height: 8px;
-        background: rgb(255 255 255 / 8%);
+        background: rgba(0,0,0,0.04);
         border-radius: 4px;
         overflow: hidden;
     }
@@ -198,7 +198,7 @@
 
     &__ai-suggest {
         margin: 1rem 1.4rem;
-        background: linear-gradient(135deg, #112240, #0f2a3d);
+        background: linear-gradient(135deg, #f0f2f8, #e8ecf4);
         border: 1px solid rgb(0 194 224 / 20%);
         border-radius: 12px;
         padding: 1.2rem;
@@ -222,7 +222,7 @@
 
     &__ai-rec {
         font-size: 1rem;
-        color: rgb(255 255 255 / 70%);
+        color: #1a1a2e;
 
         strong {
             color: #ff6444;
@@ -239,10 +239,10 @@
             display: flex;
             justify-content: space-between;
             font-size: 0.82rem;
-            color: rgb(255 255 255 / 50%);
+            color: #5a6282;
 
             span:last-child {
-                color: #e0eaf5;
+                color: #1a1a2e;
                 font-weight: 600;
             }
         }
@@ -276,9 +276,9 @@
 
     &__modify-btn {
         padding: 0.65rem;
-        background: rgb(255 255 255 / 5%);
+        background: rgba(0,0,0,0.02);
         border: 1px solid rgb(255 255 255 / 12%);
-        color: rgb(255 255 255 / 60%);
+        color: #5a6282;
         font-weight: 600;
         font-size: 0.9rem;
         border-radius: 8px;
@@ -286,7 +286,7 @@
         transition: background 0.15s;
 
         &:hover {
-            background: rgb(255 255 255 / 8%);
+            background: rgba(0,0,0,0.04);
         }
     }
 
@@ -305,7 +305,7 @@
     }
 
     &__strategy-card {
-        background: #0f2035;
+        background: #f0f2f8;
         border: 1px solid rgb(255 255 255 / 8%);
         border-radius: 10px;
         padding: 0.9rem;
@@ -321,7 +321,7 @@
 
     &__strategy-desc {
         font-size: 0.75rem;
-        color: rgb(255 255 255 / 50%);
+        color: #5a6282;
         line-height: 1.4;
         flex: 1;
     }
@@ -331,7 +331,7 @@
         flex-direction: column;
         gap: 0.2rem;
         font-size: 0.72rem;
-        color: rgb(255 255 255 / 50%);
+        color: #5a6282;
 
         strong {
             font-weight: 700;
@@ -370,7 +370,7 @@
         bottom: 0;
         left: 0;
         right: 0;
-        background: #091624;
+        background: #ffffff;
         border-top: 1px solid rgb(255 255 255 / 8%);
         padding: 0.6rem 1.2rem;
         display: flex;

@@ -2,8 +2,8 @@
     display: flex;
     flex-direction: column;
     height: 100%;
-    background: #0a1628;
-    color: #e0e8ff;
+    background: #f7f8fc;
+    color: #1a1a2e;
     font-family: 'Inter', 'Poppins', sans-serif;
     overflow: hidden;
 
@@ -11,10 +11,11 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: 1.4rem 2rem;
-        background: #0d1f3c;
-        border-bottom: 1px solid rgba(255, 100, 68, 0.2);
+        padding: 1.2rem 2rem;
+        background: #ffffff;
+        border-bottom: 1px solid #e8ecf4;
         flex-shrink: 0;
+        box-shadow: 0 1px 4px rgba(0,0,0,0.06);
     }
 
     &__title {
@@ -33,50 +34,43 @@
         }
     }
 
-    &__icon {
-        font-size: 2rem;
-    }
+    &__icon { font-size: 2rem; }
 
     &__status {
         font-size: 1.1rem;
         font-weight: 600;
-        color: rgba(255, 255, 255, 0.3);
+        color: #aaa;
         padding: 0.3rem 0.8rem;
         border-radius: 20px;
-        background: rgba(255, 255, 255, 0.05);
+        background: #f0f0f0;
 
         &--live {
-            color: #00d26a;
-            background: rgba(0, 210, 106, 0.12);
+            color: #00b057;
+            background: rgba(0, 176, 87, 0.1);
             animation: sr-blink 2s ease-in-out infinite;
         }
     }
 
-    &__controls {
-        display: flex;
-        gap: 1rem;
-    }
+    &__controls { display: flex; gap: 1rem; }
 
     &__select {
-        background: #112240;
-        border: 1px solid rgba(255, 100, 68, 0.3);
+        background: #fff;
+        border: 1px solid #dde3ee;
         border-radius: 8px;
-        color: #e0e8ff;
+        color: #1a1a2e;
         padding: 0.5rem 1rem;
         font-size: 1.3rem;
         cursor: pointer;
         outline: none;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.06);
 
-        &:focus {
-            border-color: #ff6444;
-        }
+        &:focus { border-color: #ff6444; }
     }
 
     &__price-bar {
         display: flex;
-        gap: 0;
-        background: #0d1f3c;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        background: #ffffff;
+        border-bottom: 1px solid #e8ecf4;
         flex-shrink: 0;
     }
 
@@ -86,7 +80,7 @@
         flex-direction: column;
         align-items: center;
         padding: 1rem 1.5rem;
-        border-right: 1px solid rgba(255, 255, 255, 0.06);
+        border-right: 1px solid #f0f2f8;
 
         &:last-child { border-right: none; }
     }
@@ -94,8 +88,8 @@
     &__price-label {
         font-size: 1rem;
         font-weight: 600;
-        color: rgba(255, 255, 255, 0.4);
-        letter-spacing: 0.08em;
+        color: #8a94b2;
+        letter-spacing: 0.07em;
         text-transform: uppercase;
         margin-bottom: 0.3rem;
     }
@@ -103,25 +97,17 @@
     &__price-val {
         font-size: 2rem;
         font-weight: 800;
-        color: #ffffff;
+        color: #1a1a2e;
         font-family: 'Courier New', monospace;
 
-        &--digit {
-            color: #ff9f1c;
-            font-size: 2.4rem;
-        }
-
-        &--sm {
-            font-size: 1.2rem;
-            text-align: center;
-        }
+        &--digit { color: #ff6444; font-size: 2.4rem; }
+        &--sm { font-size: 1.2rem; text-align: center; }
     }
 
     &__body {
         display: flex;
         flex: 1;
         overflow: hidden;
-        gap: 0;
     }
 
     &__signals {
@@ -131,32 +117,33 @@
         gap: 1.2rem;
         padding: 1.5rem;
         overflow-y: auto;
-        border-right: 1px solid rgba(255, 255, 255, 0.06);
+        border-right: 1px solid #e8ecf4;
+        background: #f7f8fc;
 
         &::-webkit-scrollbar { width: 4px; }
         &::-webkit-scrollbar-track { background: transparent; }
-        &::-webkit-scrollbar-thumb { background: rgba(255, 100, 68, 0.3); border-radius: 2px; }
+        &::-webkit-scrollbar-thumb { background: #dde3ee; border-radius: 2px; }
     }
 
     &__section-title {
         margin: 0 0 0.5rem;
         font-size: 1.3rem;
         font-weight: 700;
-        color: rgba(255, 255, 255, 0.7);
-        letter-spacing: 0.04em;
+        color: #5a6282;
     }
 
     &__signal-card {
-        background: #112240;
-        border: 1px solid rgba(255, 255, 255, 0.07);
+        background: #ffffff;
+        border: 1px solid #e8ecf4;
         border-radius: 12px;
         padding: 1.2rem;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.04);
     }
 
     &__signal-label {
         font-size: 1rem;
         font-weight: 700;
-        color: rgba(255, 255, 255, 0.4);
+        color: #8a94b2;
         letter-spacing: 0.1em;
         margin-bottom: 1rem;
         text-transform: uppercase;
@@ -179,14 +166,14 @@
         span:first-child {
             width: 80px;
             flex-shrink: 0;
-            color: rgba(255, 255, 255, 0.6);
+            color: #5a6282;
         }
     }
 
     &__bar {
         flex: 1;
         height: 8px;
-        background: rgba(255, 255, 255, 0.08);
+        background: #eef0f8;
         border-radius: 4px;
         overflow: hidden;
     }
@@ -196,10 +183,10 @@
         border-radius: 4px;
         transition: width 0.4s ease;
 
-        &--over { background: linear-gradient(90deg, #00d26a, #00c2e0); }
+        &--over  { background: linear-gradient(90deg, #00b057, #00c2e0); }
         &--under { background: linear-gradient(90deg, #ff444f, #ff9f1c); }
-        &--even { background: linear-gradient(90deg, #7c3aed, #00c2e0); }
-        &--odd { background: linear-gradient(90deg, #ff9f1c, #ff6444); }
+        &--even  { background: linear-gradient(90deg, #7c3aed, #00c2e0); }
+        &--odd   { background: linear-gradient(90deg, #ff9f1c, #ff6444); }
     }
 
     &__bar-pct {
@@ -207,7 +194,7 @@
         text-align: right;
         font-size: 1.2rem;
         font-weight: 700;
-        color: #ffffff;
+        color: #1a1a2e;
         flex-shrink: 0;
     }
 
@@ -217,20 +204,11 @@
         font-size: 1.3rem;
         font-weight: 700;
         text-align: center;
-        background: rgba(255, 255, 255, 0.05);
-        color: rgba(255, 255, 255, 0.5);
+        background: #f0f2f8;
+        color: #8a94b2;
 
-        &--over {
-            background: rgba(0, 210, 106, 0.12);
-            color: #00d26a;
-            border: 1px solid rgba(0, 210, 106, 0.3);
-        }
-
-        &--under {
-            background: rgba(255, 68, 79, 0.12);
-            color: #ff6444;
-            border: 1px solid rgba(255, 68, 79, 0.3);
-        }
+        &--over  { background: rgba(0,176,87,0.1); color: #008a44; border: 1px solid rgba(0,176,87,0.25); }
+        &--under { background: rgba(255,68,79,0.08); color: #cc2a33; border: 1px solid rgba(255,68,79,0.2); }
     }
 
     &__digit-bars {
@@ -252,7 +230,7 @@
     &__digit-bar-track {
         flex: 1;
         width: 100%;
-        background: rgba(255, 255, 255, 0.06);
+        background: #eef0f8;
         border-radius: 3px;
         display: flex;
         flex-direction: column;
@@ -262,31 +240,23 @@
 
     &__digit-bar-fill {
         width: 100%;
-        background: rgba(0, 194, 224, 0.5);
+        background: #b0bce8;
         border-radius: 3px 3px 0 0;
         transition: height 0.3s ease;
         min-height: 2px;
 
-        &--active {
-            background: linear-gradient(0deg, #ff6444, #ff9f1c);
-        }
+        &--active { background: linear-gradient(0deg, #ff6444, #ff9f1c); }
     }
 
     &__digit-num {
         font-size: 1rem;
         font-weight: 700;
-        color: rgba(255, 255, 255, 0.5);
+        color: #8a94b2;
         margin-top: 0.3rem;
-
-        &--active {
-            color: #ff9f1c;
-        }
+        &--active { color: #ff6444; }
     }
 
-    &__digit-count {
-        font-size: 0.9rem;
-        color: rgba(255, 255, 255, 0.3);
-    }
+    &__digit-count { font-size: 0.9rem; color: #aab2ce; }
 
     &__stream {
         flex: 1;
@@ -294,6 +264,7 @@
         flex-direction: column;
         padding: 1.5rem;
         overflow: hidden;
+        background: #f7f8fc;
     }
 
     &__tick-list {
@@ -304,8 +275,7 @@
         gap: 0.3rem;
 
         &::-webkit-scrollbar { width: 4px; }
-        &::-webkit-scrollbar-track { background: transparent; }
-        &::-webkit-scrollbar-thumb { background: rgba(255, 100, 68, 0.3); border-radius: 2px; }
+        &::-webkit-scrollbar-thumb { background: #dde3ee; border-radius: 2px; }
     }
 
     &__tick-row {
@@ -314,23 +284,18 @@
         gap: 1.5rem;
         padding: 0.5rem 1rem;
         border-radius: 8px;
-        background: rgba(255, 255, 255, 0.02);
+        background: #ffffff;
+        border: 1px solid #eef0f8;
         font-family: 'Courier New', monospace;
-        transition: background 0.2s;
 
         &--latest {
-            background: rgba(255, 100, 68, 0.1);
-            border: 1px solid rgba(255, 100, 68, 0.2);
+            background: #fff7f4;
+            border-color: rgba(255, 100, 68, 0.3);
             animation: sr-flash 0.5s ease;
         }
     }
 
-    &__tick-price {
-        font-size: 1.3rem;
-        font-weight: 600;
-        color: rgba(255, 255, 255, 0.8);
-        min-width: 100px;
-    }
+    &__tick-price { font-size: 1.3rem; font-weight: 600; color: #1a1a2e; min-width: 100px; }
 
     &__tick-digit {
         font-size: 1.6rem;
@@ -338,24 +303,14 @@
         width: 32px;
         text-align: center;
 
-        &--over { color: #00d26a; }
+        &--over  { color: #00b057; }
         &--under { color: #ff444f; }
-        &--five { color: #ff9f1c; }
+        &--five  { color: #ff9f1c; }
     }
 
-    &__tick-eo {
-        font-size: 1.1rem;
-        font-weight: 700;
-        color: rgba(255, 255, 255, 0.35);
-        width: 20px;
-    }
+    &__tick-eo { font-size: 1.1rem; font-weight: 700; color: #aab2ce; width: 20px; }
 
-    &__tick-empty {
-        color: rgba(255, 255, 255, 0.3);
-        text-align: center;
-        padding: 3rem;
-        font-size: 1.4rem;
-    }
+    &__tick-empty { color: #aab2ce; text-align: center; padding: 3rem; font-size: 1.4rem; }
 }
 
 @keyframes sr-blink {
@@ -364,6 +319,6 @@
 }
 
 @keyframes sr-flash {
-    0% { background: rgba(255, 100, 68, 0.25); }
-    100% { background: rgba(255, 100, 68, 0.1); }
+    0%   { background: #fff0eb; }
+    100% { background: #ffffff; }
 }
